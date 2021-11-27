@@ -115,14 +115,11 @@ func loadSystemRoots() (*CertPool, error) {
 
 // exportCertificate returns a *Certificate for a SecCertificateRef.
 func exportCertificate(cert macOS.CFRef) (*Certificate, error) {
-	data, err := macOS.SecItemExport(cert)
+	data, err := macOS.SecCertificateCopyData(cert)
 	if err != nil {
 		return nil, err
 	}
-	defer macOS.CFRelease(data)
-	der := macOS.CFDataToSlice(data)
-
-	return ParseCertificate(der)
+    return ParseCertificate(data)
 }
 
 // isRootCertificate reports whether Subject and Issuer match.

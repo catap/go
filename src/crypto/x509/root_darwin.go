@@ -178,14 +178,7 @@ func sslTrustSettingsResult(cert macOS.CFRef) (macOS.SecTrustSettingsResult, err
 		return macOS.SecTrustSettingsResultTrustRoot, nil
 	}
 
-	isSSLPolicy := func(policyRef macOS.CFRef) bool {
-		properties := macOS.SecPolicyCopyProperties(policyRef)
-		defer macOS.CFRelease(properties)
-		if v, ok := macOS.CFDictionaryGetValueIfPresent(properties, macOS.SecPolicyOid); ok {
-			return macOS.CFEqual(v, macOS.CFRef(macOS.SecPolicyAppleSSL))
-		}
-		return false
-	}
+	isSSLPolicy := false
 
 	for i := 0; i < macOS.CFArrayGetCount(trustSettings); i++ {
 		tSetting := macOS.CFArrayGetValueAtIndex(trustSettings, i)

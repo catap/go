@@ -97,14 +97,6 @@ func SecTrustSettingsCopyTrustSettings(cert CFRef, domain SecTrustSettingsDomain
 }
 func x509_SecTrustSettingsCopyTrustSettings_trampoline()
 
-//go:cgo_import_dynamic x509_SecPolicyCopyProperties SecPolicyCopyProperties "/System/Library/Frameworks/Security.framework/Versions/A/Security"
-
-func SecPolicyCopyProperties(policy CFRef) CFRef {
-	ret := syscall(abi.FuncPCABI0(x509_SecPolicyCopyProperties_trampoline), uintptr(policy), 0, 0, 0, 0, 0)
-	return CFRef(ret)
-}
-func x509_SecPolicyCopyProperties_trampoline()
-
 //go:cgo_import_dynamic x509_SecCertificateCopyData SecCertificateCopyData "/System/Library/Frameworks/Security.framework/Versions/A/Security"
 
 func SecCertificateCopyData(cert CFRef) ([]byte, error) {

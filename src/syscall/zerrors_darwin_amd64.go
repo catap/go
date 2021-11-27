@@ -233,7 +233,7 @@ const (
 	F_ALLOCATECONTIG                  = 0x2
 	F_CHKCLEAN                        = 0x29
 	F_DUPFD                           = 0x0
-	F_DUPFD_CLOEXEC                   = 0x43
+	F_DUPFD_CLOEXEC                   = 0x0
 	F_FLUSH_DATA                      = 0x28
 	F_FREEZE_FS                       = 0x35
 	F_FULLFSYNC                       = 0x33

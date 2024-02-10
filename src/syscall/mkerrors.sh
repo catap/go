@@ -426,7 +426,7 @@ main(void)
 		e = errors[i];
 		if(i > 0 && errors[i-1] == e)
 			continue;
-		strcpy(buf, strerror(e));
+		strlcpy(buf, strerror(e), sizeof(buf));
 		// lowercase first letter: Bad -> bad, but STREAM -> STREAM.
 		if(A <= buf[0] && buf[0] <= Z && a <= buf[1] && buf[1] <= z)
 			buf[0] += a - A;
@@ -441,7 +441,7 @@ main(void)
 		e = signals[i];
 		if(i > 0 && signals[i-1] == e)
 			continue;
-		strcpy(buf, strsignal(e));
+		strlcpy(buf, strsignal(e), sizeof(buf));
 		// lowercase first letter: Bad -> bad, but STREAM -> STREAM.
 		if(A <= buf[0] && buf[0] <= Z && a <= buf[1] && buf[1] <= z)
 			buf[0] += a - A;
